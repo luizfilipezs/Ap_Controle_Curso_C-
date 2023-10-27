@@ -1,0 +1,14 @@
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/bin/Debug/net7.0/Modulo03
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/bin/Debug/net7.0/Modulo03.deps.json
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/bin/Debug/net7.0/Modulo03.runtimeconfig.json
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/bin/Debug/net7.0/Modulo03.dll
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/bin/Debug/net7.0/Modulo03.pdb
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/obj/Debug/net7.0/Modulo03.GeneratedMSBuildEditorConfig.editorconfig
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/obj/Debug/net7.0/Modulo03.AssemblyInfoInputs.cache
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/obj/Debug/net7.0/Modulo03.AssemblyInfo.cs
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/obj/Debug/net7.0/Modulo03.csproj.CoreCompileInputs.cache
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/obj/Debug/net7.0/Modulo03.dll
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/obj/Debug/net7.0/refint/Modulo03.dll
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/obj/Debug/net7.0/Modulo03.pdb
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/obj/Debug/net7.0/Modulo03.genruntimeconfig.cache
+/home/luizfilipezs/Desktop/Ap_Controle_Curso_C-/Modulo03/obj/Debug/net7.0/ref/Modulo03.dll
