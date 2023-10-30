@@ -57,7 +57,7 @@ namespace Modulo03.Escola.View
 
         private string? ObterEscolhaUsuario()
         {
-            return Console.ReadLine()?.Trim().ToUpper();
+            return Console.ReadLine()?.Trim();
         }
 
         private void AbrirCrudAluno()
@@ -140,7 +140,7 @@ namespace Modulo03.Escola.View
 
             Console.Write($"Você deseja fazer uma nova operação?\n{TEXTO_SIM}\n{TEXTO_NAO}\n >>");
 
-            return ObterEscolhaUsuario() == TEXTO_SIM;
+            return ObterEscolhaUsuario()?.ToUpper() == TEXTO_SIM;
         }
     }
 }
