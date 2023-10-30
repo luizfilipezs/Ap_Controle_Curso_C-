@@ -1,5 +1,4 @@
 using Modulo03.Escola.Models;
-using Modulo03.Escola.Services;
 using Modulo03.Escola.Services.AlunoServices;
 using Modulo03.Escola.Services.MateriaServices;
 using Modulo03.Escola.Services.ProfessorServices;
@@ -17,6 +16,9 @@ namespace Modulo03.Escola.View
         const string ACAO_LISTAR = "2";
         const string ACAO_EDITAR = "3";
         const string ACAO_EXCLUIR = "4";
+        const string TEXTO_SIM = "SIM";
+        const string TEXTO_NAO = "NÃO";
+
 
         public void Main()
         {
@@ -62,61 +64,167 @@ namespace Modulo03.Escola.View
 
         private void AbrirCrudAluno()
         {
+            CrudAluno crud = new();
+            Aluno? model;
+
             Console.WriteLine("Você escolheu Aluno.");
-
-            CrudAluno crudAluno = new();
-            Aluno aluno = new();
-
-            AbrirCrud(crudAluno, aluno);
-        }
-
-        private void AbrirCrudProfessor()
-        {
-            Console.WriteLine("Você escolheu Professor.");
-
-            CrudProfessor crudProfessor = new();
-            Professor professor = new();
-
-            AbrirCrud(crudProfessor, professor);
-        }
-
-        private void AbrirCrudMateria()
-        {
-            Console.WriteLine("Você escolheu Matéria.");
-
-            CrudMateria crudMateria = new();
-            Materia materia = new();
-
-            AbrirCrud(crudMateria, materia);
-        }
-
-        private void AbrirCrudTurma()
-        {
-            Console.WriteLine("Você escolheu Turma.");
-
-            CrudTurma crudTurma = new();
-            Turma turma = new();
-
-            AbrirCrud(crudTurma, turma);
-        }
-
-        private void AbrirCrud<T>(ICrud<T> crud, T model) where T : BaseModel
-        {
             ExibirAcoes();
 
             switch (ObterEscolhaUsuario())
             {
                 case ACAO_CRIAR:
+                    model = new()
+                    {
+                        Matricula = RequerirInformacaoUsuario("Digite a matrícula:"),
+                        Nome = RequerirInformacaoUsuario("Digite o nome:"),
+                        Sobrenome = RequerirInformacaoUsuario("Digite o sobrenome:")
+                    };
+
                     crud.Create(model);
                     break;
                 case ACAO_LISTAR:
                     crud.Read();
                     break;
                 case ACAO_EDITAR:
+                    model = new()
+                    {
+                        Id = RequerirIdRegistro(),
+                        Matricula = RequerirInformacaoUsuario("Digite a matrícula:"),
+                        Nome = RequerirInformacaoUsuario("Digite o nome:"),
+                        Sobrenome = RequerirInformacaoUsuario("Digite o sobrenome:")
+                    };
+
                     crud.Update(model);
                     break;
                 case ACAO_EXCLUIR:
-                    crud.Delete(model.Id);
+                    int id = RequerirIdRegistro();
+
+                    crud.Delete(id);
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida.");
+                    break;
+            }
+        }
+
+        private void AbrirCrudProfessor()
+        {
+            CrudProfessor crud = new();
+            Professor? model;
+
+            Console.WriteLine("Você escolheu Professor.");
+            ExibirAcoes();
+
+            switch (ObterEscolhaUsuario())
+            {
+                case ACAO_CRIAR:
+                    model = new()
+                    {
+                        Matricula = RequerirInformacaoUsuario("Digite a matrícula:"),
+                        Nome = RequerirInformacaoUsuario("Digite o nome:"),
+                        Sobrenome = RequerirInformacaoUsuario("Digite o sobrenome:"),
+                    };
+
+                    crud.Create(model);
+                    break;
+                case ACAO_LISTAR:
+                    crud.Read();
+                    break;
+                case ACAO_EDITAR:
+                    model = new()
+                    {
+                        Id = RequerirIdRegistro(),
+                        Matricula = RequerirInformacaoUsuario("Digite a matrícula:"),
+                        Nome = RequerirInformacaoUsuario("Digite o nome:"),
+                        Sobrenome = RequerirInformacaoUsuario("Digite o sobrenome:"),
+                    };
+
+                    crud.Update(model);
+                    break;
+                case ACAO_EXCLUIR:
+                    int id = RequerirIdRegistro();
+
+                    crud.Delete(id);
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida.");
+                    break;
+            }
+        }
+
+        private void AbrirCrudMateria()
+        {
+            CrudMateria crud = new();
+            Materia? model;
+
+            Console.WriteLine("Você escolheu Matéria.");
+            ExibirAcoes();
+
+            switch (ObterEscolhaUsuario())
+            {
+                case ACAO_CRIAR:
+                    model = new()
+                    {
+                        Nome = RequerirInformacaoUsuario("Digite o nome:"),
+                    };
+
+                    crud.Create(model);
+                    break;
+                case ACAO_LISTAR:
+                    crud.Read();
+                    break;
+                case ACAO_EDITAR:
+                    model = new()
+                    {
+                        Id = RequerirIdRegistro(),
+                        Nome = RequerirInformacaoUsuario("Digite o nome:"),
+                    };
+
+                    crud.Update(model);
+                    break;
+                case ACAO_EXCLUIR:
+                    int id = RequerirIdRegistro();
+
+                    crud.Delete(id);
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida.");
+                    break;
+            }
+        }
+
+        private void AbrirCrudTurma()
+        {
+            CrudTurma crud = new();
+            Turma? model;
+
+            Console.WriteLine("Você escolheu Turma.");
+            ExibirAcoes();
+
+            switch (ObterEscolhaUsuario())
+            {
+                case ACAO_CRIAR:
+                    model = new()
+                    {
+                    };
+
+                    crud.Create(model);
+                    break;
+                case ACAO_LISTAR:
+                    crud.Read();
+                    break;
+                case ACAO_EDITAR:
+                    model = new()
+                    {
+                        Id = RequerirIdRegistro(),
+                    };
+
+                    crud.Update(model);
+                    break;
+                case ACAO_EXCLUIR:
+                    int id = RequerirIdRegistro();
+
+                    crud.Delete(id);
                     break;
                 default:
                     Console.WriteLine("Opção inválida.");
@@ -135,12 +243,40 @@ namespace Modulo03.Escola.View
 
         private bool Continuar()
         {
-            const string TEXTO_SIM = "SIM";
-            const string TEXTO_NAO = "NÃO";
-
             Console.Write($"Você deseja fazer uma nova operação?\n{TEXTO_SIM}\n{TEXTO_NAO}\n >>");
 
             return ObterEscolhaUsuario()?.ToUpper() == TEXTO_SIM;
+        }
+
+        private string RequerirInformacaoUsuario(string mensagem)
+        {
+            string? resposta;
+
+            do
+            {
+                Console.WriteLine(mensagem);
+                resposta = ObterEscolhaUsuario();
+            }
+            while (resposta == null);
+
+            return resposta;
+        }
+
+        private int RequerirIdRegistro()
+        {
+            while (true)
+            {
+                try
+                {
+                    string id = RequerirInformacaoUsuario("Digite o ID:");
+
+                    return Convert.ToInt32(id);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("ID inválido.");
+                }
+            }
         }
     }
 }
