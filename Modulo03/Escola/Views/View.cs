@@ -248,20 +248,6 @@ namespace Modulo03.Escola.View
             return ObterEscolhaUsuario()?.ToUpper() == TEXTO_SIM;
         }
 
-        private string RequerirInformacaoUsuario(string mensagem)
-        {
-            string? resposta;
-
-            do
-            {
-                Console.WriteLine(mensagem);
-                resposta = ObterEscolhaUsuario();
-            }
-            while (resposta == null);
-
-            return resposta;
-        }
-
         private int RequerirIdRegistro()
         {
             while (true)
@@ -274,9 +260,23 @@ namespace Modulo03.Escola.View
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("ID inválido.");
+                    Console.WriteLine("Valor inválido.");
                 }
             }
+        }
+
+        private string RequerirInformacaoUsuario(string mensagem)
+        {
+            string? resposta;
+
+            do
+            {
+                Console.WriteLine(mensagem);
+                resposta = ObterEscolhaUsuario();
+            }
+            while (resposta == null);
+
+            return resposta;
         }
     }
 }
