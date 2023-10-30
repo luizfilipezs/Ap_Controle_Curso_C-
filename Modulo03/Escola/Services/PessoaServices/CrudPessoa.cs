@@ -4,21 +4,39 @@ namespace Modulo03.Escola.Services.PessoaServices
 {
     public class CrudPessoa : ICrud<Pessoa>
     {
-        public Pessoa Create(Pessoa Pessoa)
+        private static readonly List<Pessoa> Pessoas = new();
+        private static int UltimoId;
+
+        public Pessoa Create(Pessoa pessoa)
         {
-            throw new NotImplementedException();
+            pessoa.Id = UltimoId++;
+            Pessoas.Add(pessoa);
+
+            return pessoa;
         }
         public List<Pessoa> Read()
         {
-            throw new NotImplementedException();
+            return Pessoas;
         }
-        public void Update(Pessoa Pessoa)
+        public void Update(Pessoa pessoa)
         {
-            throw new NotImplementedException();
+            int indicePessoa = Pessoas.FindIndex((item) => item.Id == pessoa.Id);
+
+            if (indicePessoa != -1) {
+                Pessoas[indicePessoa] = pessoa;
+            } else {
+                Console.WriteLine("Pessoa não encontrado.");
+            }
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            int indicePessoa = Pessoas.FindIndex((item) => item.Id == id);
+
+            if (indicePessoa != -1) {
+                Pessoas.RemoveAt(indicePessoa);
+            } else {
+                Console.WriteLine("Pessoa não encontrado.");
+            }
         }
     }
 }

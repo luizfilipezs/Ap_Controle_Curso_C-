@@ -4,21 +4,39 @@ namespace Modulo03.Escola.Services.MateriaServices
 {
     public class CrudMateria : ICrud<Materia>
     {
-        public Materia Create(Materia Materia)
+        private static readonly List<Materia> Materias = new();
+        private static int UltimoId;
+
+        public Materia Create(Materia materia)
         {
-            throw new NotImplementedException();
+            materia.Id = UltimoId++;
+            Materias.Add(materia);
+
+            return materia;
         }
         public List<Materia> Read()
         {
-            throw new NotImplementedException();
+            return Materias;
         }
-        public void Update(Materia Materia)
+        public void Update(Materia materia)
         {
-            throw new NotImplementedException();
+            int indiceMateria = Materias.FindIndex((item) => item.Id == materia.Id);
+
+            if (indiceMateria != -1) {
+                Materias[indiceMateria] = materia;
+            } else {
+                Console.WriteLine("Materia não encontrado.");
+            }
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            int indiceMateria = Materias.FindIndex((item) => item.Id == id);
+
+            if (indiceMateria != -1) {
+                Materias.RemoveAt(indiceMateria);
+            } else {
+                Console.WriteLine("Materia não encontrado.");
+            }
         }
     }
 }

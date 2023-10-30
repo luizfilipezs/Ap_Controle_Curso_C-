@@ -4,21 +4,39 @@ namespace Modulo03.Escola.Services.TurmaServices
 {
     public class CrudTurma : ICrud<Turma>
     {
-        public Turma Create(Turma Turma)
+        private static readonly List<Turma> Turmas = new();
+        private static int UltimoId;
+
+        public Turma Create(Turma turma)
         {
-            throw new NotImplementedException();
+            turma.Id = UltimoId++;
+            Turmas.Add(turma);
+
+            return turma;
         }
         public List<Turma> Read()
         {
-            throw new NotImplementedException();
+            return Turmas;
         }
-        public void Update(Turma Turma)
+        public void Update(Turma turma)
         {
-            throw new NotImplementedException();
+            int indiceTurma = Turmas.FindIndex((item) => item.Id == turma.Id);
+
+            if (indiceTurma != -1) {
+                Turmas[indiceTurma] = turma;
+            } else {
+                Console.WriteLine("Turma não encontrado.");
+            }
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            int indiceTurma = Turmas.FindIndex((item) => item.Id == id);
+
+            if (indiceTurma != -1) {
+                Turmas.RemoveAt(indiceTurma);
+            } else {
+                Console.WriteLine("Turma não encontrado.");
+            }
         }
     }
 }

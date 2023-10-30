@@ -4,21 +4,39 @@ namespace Modulo03.Escola.Services.ProfessorServices
 {
     public class CrudProfessor : ICrud<Professor>
     {
-        public Professor Create(Professor Professor)
+        private static readonly List<Professor> Professores = new();
+        private static int UltimoId;
+
+        public Professor Create(Professor professor)
         {
-            throw new NotImplementedException();
+            professor.Id = UltimoId++;
+            Professores.Add(professor);
+
+            return professor;
         }
         public List<Professor> Read()
         {
-            throw new NotImplementedException();
+            return Professores;
         }
-        public void Update(Professor Professor)
+        public void Update(Professor professor)
         {
-            throw new NotImplementedException();
+            int indiceProfessor = Professores.FindIndex((item) => item.Id == professor.Id);
+
+            if (indiceProfessor != -1) {
+                Professores[indiceProfessor] = professor;
+            } else {
+                Console.WriteLine("Professor não encontrado.");
+            }
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            int indiceProfessor = Professores.FindIndex((item) => item.Id == id);
+
+            if (indiceProfessor != -1) {
+                Professores.RemoveAt(indiceProfessor);
+            } else {
+                Console.WriteLine("Professor não encontrado.");
+            }
         }
     }
 }

@@ -4,21 +4,39 @@ namespace Modulo03.Escola.Services.AlunoServices
 {
     public class CrudAluno : ICrud<Aluno>
     {
+        private static readonly List<Aluno> Alunos = new();
+        private static int UltimoId;
+
         public Aluno Create(Aluno aluno)
         {
-            throw new NotImplementedException();
+            aluno.Id = UltimoId++;
+            Alunos.Add(aluno);
+
+            return aluno;
         }
         public List<Aluno> Read()
         {
-            throw new NotImplementedException();
+            return Alunos;
         }
         public void Update(Aluno aluno)
         {
-            throw new NotImplementedException();
+            int indiceAluno = Alunos.FindIndex((item) => item.Id == aluno.Id);
+
+            if (indiceAluno != -1) {
+                Alunos[indiceAluno] = aluno;
+            } else {
+                Console.WriteLine("Aluno não encontrado.");
+            }
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            int indiceAluno = Alunos.FindIndex((item) => item.Id == id);
+
+            if (indiceAluno != -1) {
+                Alunos.RemoveAt(indiceAluno);
+            } else {
+                Console.WriteLine("Aluno não encontrado.");
+            }
         }
     }
 }
